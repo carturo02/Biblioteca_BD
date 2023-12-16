@@ -12,10 +12,13 @@ import auxiliar.RoundJTextField;
 import auxiliar.RoundJPasswordField;
 import auxiliar.RoundJButton;
 import java.awt.event.ComponentEvent;
-
+import java.net.URL;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 
     public class Login extends JFrame {
-
         private static final long serialVersionUID = 1L;
         private JPanel panel_1;
         private ImageIcon icon;
@@ -28,16 +31,25 @@ import java.awt.event.ComponentEvent;
         private RoundJButton usersbut;
         private RoundJButton passbut;
         private JRadioButton rdbtnNewRadioButton;
-        private JLabel lblNewLabel;
-        private JLabel lblUser;
+        private JLabel lbPass;
+        private JLabel lbUser;
         private JPanel contentPane;
-               
-
+              
         public Login() {
         	setTitle("LOGIN");
             setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             setBounds(100, 100, 1300, 730);
-            contentPane = new JPanel();
+            icon = new ImageIcon(Login.class.getResource("/img/book2.png"));       
+            contentPane = new JPanel(){
+				private static final long serialVersionUID = 1L;
+				@Override
+                protected void paintComponent(Graphics g) {
+                    super.paintComponent(g);
+                    if (icon != null) {
+                        g.drawImage(icon.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
+                    }
+                }
+            };   
             contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
             setLocationRelativeTo(null);
             setContentPane(contentPane);    
@@ -47,17 +59,9 @@ import java.awt.event.ComponentEvent;
         }
 
         private JPanel getPanel_1() {
-            if (panel_1 == null) {
-            	icon = new ImageIcon("D:\\Informatica\\Proyectos IDE Eclipse 2023\\BD_Biblioteca\\src\\auxiliar\\book2.png");
-                panel_1 = new JPanel() {
-                    @Override
-                    protected void paintComponent(Graphics g) {
-                        super.paintComponent(g);
-                        if (icon != null) {
-                            g.drawImage(icon.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
-                        }
-                    }
-                };    
+            if (panel_1 == null) {             
+                panel_1 = new JPanel(); 
+                panel_1.setOpaque(false);
                 panel_1.setLayout(null);
                 panel_1.add(getTransparentPanel());
             }
@@ -73,7 +77,7 @@ import java.awt.event.ComponentEvent;
     			transparentPanel.setBounds(538, 140, 350, 400);
     			transparentPanel.setLayout(null);
     			transparentPanel.add(getLblNewLabel_1_2());
-    			transparentPanel.add(getLblNewLabel());
+    			transparentPanel.add(getLbPass());
     			transparentPanel.add(getTextField());
     			transparentPanel.add(getPasswordField());
     			transparentPanel.add(getBtnNewButton());
@@ -88,9 +92,21 @@ import java.awt.event.ComponentEvent;
     	private RoundJTextField getTextField() {
     		if (textField == null) {
     			textField = new RoundJTextField(5);
+    			textField.addFocusListener(new FocusAdapter() {
+    				@Override
+    				public void focusGained(FocusEvent e) {
+    					lbUser.setVisible(false);
+    				}
+    				@Override
+    				public void focusLost(FocusEvent e) {
+    					if(textField.getText().isEmpty())
+    						lbUser.setVisible(true);
+    				}
+    			});
+    			Insets margin = new Insets(0, 5, 0, 0); // Establece un margen izquierdo de 10
+    			textField.setMargin(margin);
     			textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-    			textField.setForeground(Color.GRAY);
-    			//textField.setBorder(new RoundedBorder(10));
+    			textField.setForeground(Color.BLACK);
     			textField.setBounds(80, 175, 240, 35);
     			textField.setColumns(10);
     			textField.setOpaque(false);
@@ -100,7 +116,19 @@ import java.awt.event.ComponentEvent;
     	private RoundJPasswordField getPasswordField() {
     		if (passwordField == null) {
     			passwordField = new RoundJPasswordField(5);
-    			passwordField.setBorder(new RoundedBorder(10));   			
+    			passwordField.addFocusListener(new FocusAdapter() {
+    				@Override
+    				public void focusGained(FocusEvent e) {
+    					lbPass.setVisible(false);
+    				}
+    				@Override
+    				public void focusLost(FocusEvent e) {
+    					if(passwordField.getPassword().length == 0)
+    						lbPass.setVisible(true);
+    				}
+    			});
+    			passwordField.setBorder(new RoundedBorder(10));   
+    			passwordField.setFont(new Font("Tahoma", Font.BOLD, 14));
     			passwordField.setBounds(80, 227, 240, 35);
     		}
     		return passwordField;
@@ -117,7 +145,9 @@ import java.awt.event.ComponentEvent;
     	private JLabel getLblNewLabel_2() {
     		if (lblNewLabel_2 == null) {
     			lblNewLabel_2 = new JLabel("");
-    			lblNewLabel_2.setIcon(new ImageIcon("D:\\Informatica\\Proyectos IDE Eclipse 2023\\Proyecto_BD_Biblioteca\\src\\img\\icono.png"));
+    			 URL url = getClass().getResource("/img/icono.png");
+    			  ImageIcon imagenOriginal = new ImageIcon(url);  	    	   
+    			  lblNewLabel_2 .setIcon(imagenOriginal);
     			lblNewLabel_2.setBounds(125, 11, 100, 100);
     		}
     		return lblNewLabel_2;
@@ -131,21 +161,14 @@ import java.awt.event.ComponentEvent;
     			lblNewLabel_3.setBounds(40, 122, 280, 42);
     		}
     		return lblNewLabel_3;
-    	}
-    	
-    	private void actualizarImagen(String dir, JLabel et) {
-            ImageIcon imagenOriginal = new ImageIcon(dir);
-            Image imagenEscalada = imagenOriginal.getImage().getScaledInstance(et.getWidth(), et.getHeight(), Image.SCALE_DEFAULT); ///
-            ImageIcon imagenFinal = new ImageIcon(imagenEscalada);
-            et.setIcon(imagenFinal);
-        }
+    	}  
     	private RoundJButton getUsersbut() {
     		if (usersbut == null) {
     			usersbut = new RoundJButton("");  	
     			usersbut.addComponentListener(new ComponentAdapter() {
     	            @Override
     	            public void componentResized(ComponentEvent e) {
-    	                updateImagen("D:\\Informatica\\Proyectos IDE Eclipse 2023\\Proyecto_BD_Biblioteca\\src\\img\\usuario.png", usersbut);
+                        updateImagen("/img/usuario.png", usersbut);     	           	
     	            }
     	        });
     			usersbut.setBounds(27, 175, 50, 35);
@@ -159,7 +182,7 @@ import java.awt.event.ComponentEvent;
     			passbut.addComponentListener(new ComponentAdapter() {
     	            @Override
     	            public void componentResized(ComponentEvent e) {
-    	                updateImagen("D:\\Informatica\\Proyectos IDE Eclipse 2023\\Proyecto_BD_Biblioteca\\src\\img\\pass.png", passbut);
+                     updateImagen("/img/pass.png", passbut);
     	            }
     	        });
     			passbut.setBounds(27, 227, 50, 35);
@@ -167,17 +190,31 @@ import java.awt.event.ComponentEvent;
     		return passbut;
     	}
     		
-    		private void updateImagen(String dir, RoundJButton et) {
-    	        ImageIcon imagenOriginal = new ImageIcon(dir);
-    	        Image imagenEsc = imagenOriginal.getImage().getScaledInstance(et.getWidth()-8, et.getHeight()-8, Image.SCALE_DEFAULT); ///
-    	        ImageIcon imagenEnd = new ImageIcon(imagenEsc);
-    	        et.setIcon(imagenEnd);
+    	private void updateImagen(String dir, RoundJButton et) {
+    	    URL url = getClass().getResource(dir);
+    	    if (url == null) {
+    	        System.out.println("No se pudo encontrar el recurso: " + dir);
+    	        return;
     	    }
+    	    ImageIcon imagenOriginal = new ImageIcon(url);
+    	    Image imagenEsc = imagenOriginal.getImage().getScaledInstance(et.getWidth()-8, et.getHeight()-8, Image.SCALE_DEFAULT);
+    	    ImageIcon imagenEnd = new ImageIcon(imagenEsc);
+    	    et.setIcon(imagenEnd);
+    	}
     		
     	
     	private JRadioButton getRdbtnNewRadioButton() {
     		if (rdbtnNewRadioButton == null) {
     			rdbtnNewRadioButton = new JRadioButton("view password");
+    			rdbtnNewRadioButton.addItemListener(new ItemListener() {
+    			    public void itemStateChanged(ItemEvent e) {
+    			        if (e.getStateChange() == ItemEvent.SELECTED) {
+    			            passwordField.setEchoChar((char) 0); 
+    			        } else {
+    			            passwordField.setEchoChar('•'); 
+    			        }
+    			    }
+    			});
     			rdbtnNewRadioButton.setOpaque(false);
     			rdbtnNewRadioButton.setHorizontalAlignment(SwingConstants.CENTER);
     			rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -186,24 +223,24 @@ import java.awt.event.ComponentEvent;
     		}
     		return rdbtnNewRadioButton;
     	}
-    	private JLabel getLblNewLabel() {
-    		if (lblNewLabel == null) {
-    			lblNewLabel = new JLabel("password");
-    			lblNewLabel.setForeground(Color.GRAY);
-    			lblNewLabel.setFont(new Font("Dialog", Font.PLAIN, 11));
-    			lblNewLabel.setOpaque(false);
-    			lblNewLabel.setBounds(89, 237, 231, 14);
+    	private JLabel getLbPass() {
+    		if (lbPass == null) {
+    			lbPass = new JLabel("password");
+    			lbPass.setForeground(Color.GRAY);
+    			lbPass.setFont(new Font("Dialog", Font.PLAIN, 11));
+    			lbPass.setOpaque(false);
+    			lbPass.setBounds(89, 237, 231, 14);
     		}
-    		return lblNewLabel;
+    		return lbPass;
     	}
     	private JLabel getLblNewLabel_1_2() {
-    		if (lblUser == null) {
-    			lblUser = new JLabel("user");
-    			lblUser.setOpaque(false);
-    			lblUser.setForeground(Color.GRAY);
-    			lblUser.setFont(new Font("Dialog", Font.PLAIN, 11));
-    			lblUser.setBounds(89, 186, 231, 14);
+    		if (lbUser == null) {
+    			lbUser = new JLabel("user");
+    			lbUser.setOpaque(false);
+    			lbUser.setForeground(Color.GRAY);
+    			lbUser.setFont(new Font("Dialog", Font.PLAIN, 11));
+    			lbUser.setBounds(89, 186, 231, 14);
     		}
-    		return lblUser;
+    		return lbUser;
     	}
     }
