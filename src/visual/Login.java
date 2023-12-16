@@ -31,23 +31,7 @@ import java.awt.event.ComponentEvent;
         private JLabel lblNewLabel;
         private JLabel lblUser;
         private JPanel contentPane;
-        
-        
-    	public static void main(String[] args) {
-    		EventQueue.invokeLater(new Runnable() {
-    			public void run() {
-    				try {
-    					Login frame = new Login();
-    					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 	
-    					frame.setVisible(true);
-    				} catch (Exception e) {
-    					e.printStackTrace();
-    				}
-    			}
-    		});
-    	}
-    	
+               
 
         public Login() {
         	setTitle("LOGIN");
