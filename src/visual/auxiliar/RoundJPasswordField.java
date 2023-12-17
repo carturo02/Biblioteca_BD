@@ -1,4 +1,4 @@
-package auxiliar;
+package visual.auxiliar;
 
 import javax.swing.*;
 import java.awt.*;

@@ -3,20 +3,21 @@ package visual;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ComponentAdapter;
-
 import javax.swing.border.EmptyBorder;
 
-import auxiliar.RoundedBorder;
-import auxiliar.TransparentPanel;
-import auxiliar.RoundJTextField;
-import auxiliar.RoundJPasswordField;
-import auxiliar.RoundJButton;
+import services.AccountServices;
+import visual.auxiliar.RoundJButton;
+import visual.auxiliar.RoundJPasswordField;
+import visual.auxiliar.RoundJTextField;
+import visual.auxiliar.RoundedBorder;
+import visual.auxiliar.TransparentPanel;
 import java.awt.event.ComponentEvent;
 import java.net.URL;
 import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.Toolkit;
 
     public class Login extends JFrame {
         private static final long serialVersionUID = 1L;
@@ -57,6 +58,10 @@ import java.awt.event.ItemListener;
             contentPane.add(getPanel_1(), BorderLayout.CENTER);
             
         }
+        
+        public Login returnThis(){
+    		return this;
+    	}
 
         private JPanel getPanel_1() {
             if (panel_1 == null) {             
@@ -136,6 +141,24 @@ import java.awt.event.ItemListener;
     	private RoundJButton getBtnNewButton() {
     		if (btnNewButton == null) {
     			btnNewButton = new RoundJButton("LOGIN");
+    			btnNewButton.addActionListener(new java.awt.event.ActionListener() {
+    				public void actionPerformed(java.awt.event.ActionEvent e) {
+    					AccountServices account = new AccountServices();
+    					
+    					if(account.getLoginUser(textField.getText(), passwordField.getPassword())) {
+    						Principal p = new Principal();
+    						p.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    						p.setExtendedState(JFrame.MAXIMIZED_BOTH); 	
+    						dispose();
+    						p.setVisible(true);
+    						
+    					}else
+    						JOptionPane.showMessageDialog(null, "Invalid username or wrong password"); 			
+    					passwordField.setText("");
+    					
+    					
+    				}
+    			});
     			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
     			btnNewButton.setBorder(new RoundedBorder(10));
     			btnNewButton.setBounds(95, 300, 160, 35);

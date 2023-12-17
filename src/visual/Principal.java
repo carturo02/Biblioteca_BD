@@ -10,18 +10,20 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import auxiliar.TransparentPanel;
-import auxiliar.RoundedBorder;
+
+import visual.auxiliar.RoundJButton;
+import visual.auxiliar.RoundJTextField;
+import visual.auxiliar.RoundedBorder;
+import visual.auxiliar.TransparentPanel;
+
 import java.awt.BorderLayout;
 import javax.swing.BorderFactory;
 import java.awt.Dimension;
 import java.awt.Color;
 import javax.swing.JButton;
-import auxiliar.RoundJButton;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.JTextField;
-import auxiliar.RoundJTextField;
 import javax.swing.SwingConstants;
 import java.awt.SystemColor;
 

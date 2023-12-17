@@ -18,12 +18,6 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.LineBorder;
-
-import auxiliar.RoundJButton;
-import auxiliar.RoundJTextField;
-import auxiliar.RoundedBorder;
-import auxiliar.SearchableComboBox;
-
 import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -39,6 +33,12 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import visual.auxiliar.RoundJButton;
+import visual.auxiliar.RoundJTextField;
+import visual.auxiliar.RoundedBorder;
+import visual.auxiliar.SearchableComboBox;
+
 import javax.swing.JRadioButton;
 
 

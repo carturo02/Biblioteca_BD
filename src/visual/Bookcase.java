@@ -15,9 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JSplitPane;
 import javax.swing.border.LineBorder;
 
-import auxiliar.RoundJButton;
-import auxiliar.RoundJTextField;
-import auxiliar.RoundedBorder;
+import visual.auxiliar.RoundJButton;
+import visual.auxiliar.RoundJTextField;
+import visual.auxiliar.RoundedBorder;
 
 import javax.swing.JTextField;
 import javax.swing.JLabel;

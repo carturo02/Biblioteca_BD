@@ -26,7 +26,7 @@ public class ServicesLocator {
 	public static java.sql.Connection getConnection(){
 		//Aqui ponen su password
 		String password = "02081366966";
-		
+	
 		//Nombre de la BD
 		String bd = "Biblioteca";
 		
