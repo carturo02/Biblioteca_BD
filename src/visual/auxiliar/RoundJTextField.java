@@ -8,7 +8,7 @@ import javax.swing.JTextField;
 
 public class RoundJTextField extends JTextField {
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private Shape shape;
@@ -22,18 +22,21 @@ public class RoundJTextField extends JTextField {
         this.arcHeight = 15;
     }
 
-    protected void paintComponent(Graphics g) {
+    @Override
+	protected void paintComponent(Graphics g) {
         g.setColor(getBackground());
         g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, arcWidth, arcHeight);
         super.paintComponent(g);
     }
 
-    protected void paintBorder(Graphics g) {
+    @Override
+	protected void paintBorder(Graphics g) {
         g.setColor(getForeground());
         g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, arcWidth, arcHeight);
     }
 
-    public boolean contains(int x, int y) {
+    @Override
+	public boolean contains(int x, int y) {
         if (shape == null || !shape.getBounds().equals(getBounds())) {
             shape = new RoundRectangle2D.Float(0, 0, getWidth()-1, getHeight()-1, arcWidth, arcHeight);
         }

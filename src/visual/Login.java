@@ -1,23 +1,35 @@
 package visual;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Insets;
 import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.net.URL;
+//import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
-
 import services.AccountServices;
 import visual.auxiliar.RoundJButton;
 import visual.auxiliar.RoundJPasswordField;
 import visual.auxiliar.RoundJTextField;
 import visual.auxiliar.RoundedBorder;
 import visual.auxiliar.TransparentPanel;
-import java.awt.event.ComponentEvent;
-import java.net.URL;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.Toolkit;
 
     public class Login extends JFrame {
         private static final long serialVersionUID = 1L;
@@ -35,12 +47,12 @@ import java.awt.Toolkit;
         private JLabel lbPass;
         private JLabel lbUser;
         private JPanel contentPane;
-              
+
         public Login() {
         	setTitle("LOGIN");
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setBounds(100, 100, 1300, 730);
-            icon = new ImageIcon(Login.class.getResource("/img/book2.png"));       
+            icon = new ImageIcon(Login.class.getResource("/img/book2.png"));
             contentPane = new JPanel(){
 				private static final long serialVersionUID = 1L;
 				@Override
@@ -50,22 +62,22 @@ import java.awt.Toolkit;
                         g.drawImage(icon.getImage(), 0, 0, this.getWidth(), this.getHeight(), this);
                     }
                 }
-            };   
+            };
             contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
             setLocationRelativeTo(null);
-            setContentPane(contentPane);    
+            setContentPane(contentPane);
             contentPane.setLayout(new BorderLayout(0, 0));
             contentPane.add(getPanel_1(), BorderLayout.CENTER);
-            
+
         }
-        
+
         public Login returnThis(){
     		return this;
     	}
 
         private JPanel getPanel_1() {
-            if (panel_1 == null) {             
-                panel_1 = new JPanel(); 
+            if (panel_1 == null) {
+                panel_1 = new JPanel();
                 panel_1.setOpaque(false);
                 panel_1.setLayout(null);
                 panel_1.add(getTransparentPanel());
@@ -132,7 +144,7 @@ import java.awt.Toolkit;
     						lbPass.setVisible(true);
     				}
     			});
-    			passwordField.setBorder(new RoundedBorder(10));   
+    			passwordField.setBorder(new RoundedBorder(10));
     			passwordField.setFont(new Font("Tahoma", Font.BOLD, 14));
     			passwordField.setBounds(80, 227, 240, 35);
     		}
@@ -142,21 +154,23 @@ import java.awt.Toolkit;
     		if (btnNewButton == null) {
     			btnNewButton = new RoundJButton("LOGIN");
     			btnNewButton.addActionListener(new java.awt.event.ActionListener() {
-    				public void actionPerformed(java.awt.event.ActionEvent e) {
+    				@Override
+					public void actionPerformed(java.awt.event.ActionEvent e) {
     					AccountServices account = new AccountServices();
-    					
+
     					if(account.getLoginUser(textField.getText(), passwordField.getPassword())) {
     						Principal p = new Principal();
-    						p.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    						p.setExtendedState(JFrame.MAXIMIZED_BOTH); 	
+    						p.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    						p.setExtendedState(Frame.MAXIMIZED_BOTH);
     						dispose();
     						p.setVisible(true);
-    						
+
     					}else
-    						JOptionPane.showMessageDialog(null, "Invalid username or wrong password"); 			
+    						JOptionPane.showMessageDialog(null, "Invalid username or wrong password");
     					passwordField.setText("");
-    					
-    					
+
+
+
     				}
     			});
     			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -169,7 +183,7 @@ import java.awt.Toolkit;
     		if (lblNewLabel_2 == null) {
     			lblNewLabel_2 = new JLabel("");
     			 URL url = getClass().getResource("/img/icono.png");
-    			  ImageIcon imagenOriginal = new ImageIcon(url);  	    	   
+    			  ImageIcon imagenOriginal = new ImageIcon(url);
     			  lblNewLabel_2 .setIcon(imagenOriginal);
     			lblNewLabel_2.setBounds(125, 11, 100, 100);
     		}
@@ -184,14 +198,14 @@ import java.awt.Toolkit;
     			lblNewLabel_3.setBounds(40, 122, 280, 42);
     		}
     		return lblNewLabel_3;
-    	}  
+    	}
     	private RoundJButton getUsersbut() {
     		if (usersbut == null) {
-    			usersbut = new RoundJButton("");  	
+    			usersbut = new RoundJButton("");
     			usersbut.addComponentListener(new ComponentAdapter() {
     	            @Override
     	            public void componentResized(ComponentEvent e) {
-                        updateImagen("/img/usuario.png", usersbut);     	           	
+                        updateImagen("/img/usuario.png", usersbut);
     	            }
     	        });
     			usersbut.setBounds(27, 175, 50, 35);
@@ -200,7 +214,7 @@ import java.awt.Toolkit;
     	}
     	private RoundJButton getPassbut() {
     		if (passbut == null) {
-    			passbut = new RoundJButton("");  			
+    			passbut = new RoundJButton("");
     			passbut.setBorder(new RoundedBorder(10));
     			passbut.addComponentListener(new ComponentAdapter() {
     	            @Override
@@ -212,7 +226,7 @@ import java.awt.Toolkit;
     		}
     		return passbut;
     	}
-    		
+
     	private void updateImagen(String dir, RoundJButton et) {
     	    URL url = getClass().getResource(dir);
     	    if (url == null) {
@@ -224,17 +238,18 @@ import java.awt.Toolkit;
     	    ImageIcon imagenEnd = new ImageIcon(imagenEsc);
     	    et.setIcon(imagenEnd);
     	}
-    		
-    	
+
+
     	private JRadioButton getRdbtnNewRadioButton() {
     		if (rdbtnNewRadioButton == null) {
     			rdbtnNewRadioButton = new JRadioButton("view password");
     			rdbtnNewRadioButton.addItemListener(new ItemListener() {
-    			    public void itemStateChanged(ItemEvent e) {
+    			    @Override
+					public void itemStateChanged(ItemEvent e) {
     			        if (e.getStateChange() == ItemEvent.SELECTED) {
-    			            passwordField.setEchoChar((char) 0); 
+    			            passwordField.setEchoChar((char) 0);
     			        } else {
-    			            passwordField.setEchoChar('•'); 
+    			            passwordField.setEchoChar('•');
     			        }
     			    }
     			});

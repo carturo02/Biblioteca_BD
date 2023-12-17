@@ -1,12 +1,14 @@
 package visual.auxiliar;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
 
 public class TransparentPanel extends JPanel {
 
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private float opacity;
@@ -19,7 +21,7 @@ public class TransparentPanel extends JPanel {
         this.opacity = opacity;
         this.repaint();
     }
-    
+
     public float getOpacity() {
     	return opacity;
     }
@@ -30,12 +32,12 @@ public class TransparentPanel extends JPanel {
         g.setColor(getBackground());
         g.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 50, 50);
     }
-    
+
     // Aquí puedes agregar los métodos que necesites, por ejemplo:
     public void setColor(Color color) {
         this.setBackground(color);
     }
-    
+
     public void setBonds(int x, int y, int width, int height) {
         this.setBounds(x, y, width, height);
     }

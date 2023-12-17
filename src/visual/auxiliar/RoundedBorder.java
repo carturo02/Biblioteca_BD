@@ -1,8 +1,13 @@
 package visual.auxiliar;
 
 
+import java.awt.Component;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.Insets;
+import java.awt.RenderingHints;
+
 import javax.swing.border.Border;
-import java.awt.*;
 
 public class RoundedBorder implements Border {
 

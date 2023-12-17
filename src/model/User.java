@@ -5,7 +5,7 @@ public class User {
 	private String username;
     private int cod_rol;
     private String role;
-    
+
 	public String getUsername() {
 		return username;
 	}
@@ -24,11 +24,11 @@ public class User {
 	public void setCod_user(int cod_user) {
 		this.cod_user = cod_user;
 	}
-	
+
 	public User() {
 		super();
 	}
-	
+
 	/*
 	 * arreglar
 	 */
@@ -43,10 +43,10 @@ public class User {
 	public void setCod_rol(int cod_rol) {
 		this.cod_rol = cod_rol;
 	}
-	
-	
 
-	
-	
+
+
+
+
 
 }

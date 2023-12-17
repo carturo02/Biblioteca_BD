@@ -10,7 +10,7 @@ import javax.swing.JButton;
 public class RoundJButton extends JButton {
 
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private Shape shape;
@@ -22,19 +22,22 @@ public class RoundJButton extends JButton {
         setBorderPainted(false); // Evita que se pinte el borde.
     }
 
-    protected void paintComponent(Graphics g) {
+    @Override
+	protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;
         g2.setColor(getBackground());
         g2.fillRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
         super.paintComponent(g);
     }
-  
-    protected void paintBorder(Graphics g) {
+
+    @Override
+	protected void paintBorder(Graphics g) {
         g.setColor(getForeground());
         g.drawRoundRect(0, 0, getWidth()-1, getHeight()-1, 15, 15);
     }
 
-    public boolean contains(int x, int y) {
+    @Override
+	public boolean contains(int x, int y) {
         if (shape == null || !shape.getBounds().equals(getBounds())) {
             shape = new RoundRectangle2D.Float(0, 0, getWidth()-1, getHeight()-1, 15, 15);
         }

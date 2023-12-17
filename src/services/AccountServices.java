@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 
 import model.User;
@@ -17,7 +16,7 @@ import utils.GlobalFlag;
 public class AccountServices {
 
 	/**
-	 * 
+	 * Para el login o cambiar de usuario // usen este de guia
 	 */
 	public boolean getLoginUser(String user, char[] pass) {
 	    // Llama la conexion
@@ -36,7 +35,7 @@ public class AccountServices {
 	        if (rs.next()) {
 	            User user_0 = new User();
 	            user_0.setCod_user(rs.getInt("cod_account"));
-	            user_0.setUsername(rs.getString("user_name"));	   
+	            user_0.setUsername(rs.getString("user_name"));
 	            user_0.setCod_rol(rs.getInt("cod_rol"));
 
 	            // Crear una sentencia
@@ -73,7 +72,7 @@ public class AccountServices {
 	        // TODO Auto-generated catch block
 	        e.printStackTrace();
 	    } finally {
-	        // Asegúrate de cerrar tus recursos de JDBC	 
+	        // Asegúrate de cerrar tus recursos de JDBC
 	        if (conn != null) {
 	            try {
 					conn.close();
@@ -89,19 +88,19 @@ public class AccountServices {
 
 
 
-	
+
 }
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
 

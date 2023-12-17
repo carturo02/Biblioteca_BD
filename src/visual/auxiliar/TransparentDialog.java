@@ -1,14 +1,15 @@
 package visual.auxiliar;
 
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Color;
+
+import javax.swing.JDialog;
 
 
 public class TransparentDialog extends JDialog {
 
     /**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	//private float opacity;
@@ -18,7 +19,8 @@ public class TransparentDialog extends JDialog {
         this.setUndecorated(true);
     }
 
-    public void setOpacity(float opacity) {
+    @Override
+	public void setOpacity(float opacity) {
       //  this.opacity = opacity;
         this.repaint();
     }
@@ -32,17 +34,18 @@ public class TransparentDialog extends JDialog {
         g2d.dispose();
     }
     */
-    
+
     // Aquí puedes agregar los métodos que necesites, por ejemplo:
     public void setColor(Color color) {
         this.setBackground(color);
     }
-    
+
     public void setBonds(int x, int y, int width, int height) {
         this.setBounds(x, y, width, height);
     }
-    
-    public void setModal(boolean modal) {
+
+    @Override
+	public void setModal(boolean modal) {
         this.setModal(modal);
     }
 }
