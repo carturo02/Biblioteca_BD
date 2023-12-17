@@ -1,41 +1,30 @@
 package visual;
 
+import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
+import javax.swing.JComboBox;
 import javax.swing.JDialog;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JSplitPane;
-import javax.swing.border.LineBorder;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
 
 import auxiliar.RoundJButton;
 import auxiliar.RoundJTextField;
 import auxiliar.RoundedBorder;
 
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-
-import javax.swing.JButton;
-import javax.swing.JTextPane;
-import java.awt.Insets;
-import javax.swing.JComboBox;
-import javax.swing.JTextArea;
-
 public class Bookcase extends JDialog {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel panel;
@@ -72,13 +61,13 @@ public class Bookcase extends JDialog {
 	private RoundJButton btnNewButton_1;
 	private RoundJButton btnNewButton_1_1;
 
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					Bookcase dialog = new Bookcase();
-					dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+					dialog.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 					dialog.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -86,10 +75,10 @@ public class Bookcase extends JDialog {
 			}
 		});
 	}
-	
+
 	/* CENTRAR TODOS LOS TEXTOS DE LOS TEXT FIELD Y JUSTIFICAR EL TEXT AREA*/
 
-	
+
 	public Bookcase() {
 		getContentPane().setBackground(Color.DARK_GRAY);
 		setForeground(Color.BLACK);
@@ -129,10 +118,10 @@ public class Bookcase extends JDialog {
 			panelInterno.setBackground(Color.LIGHT_GRAY);
 			//panelInterno = new JPanel(null);
 			panelInterno.setBorder(new RoundedBorder(5));
-			panelInterno.setBounds(0, 40, 1140, 513);					
+			panelInterno.setBounds(0, 40, 1140, 513);
             panelInterno.setLayout(null);
-            panelInterno.add(getSplitPane()); 
-			//panelInterno.add(getSplitPane()); 
+            panelInterno.add(getSplitPane());
+			//panelInterno.add(getSplitPane());
     }
     return panelInterno;
    }
@@ -142,7 +131,7 @@ public class Bookcase extends JDialog {
 	    if (splitPane == null) {
 	    	JPanel centralPanel = getCentral();
 	        centralPanel.setPreferredSize(new Dimension(935 - 300, 513)); // Establece el tamaño preferido del panel central
-	        
+
 	        centralPanel.setMinimumSize(new Dimension(0, 0)); // Establece el tamaño mínimo del panel central
 	        splitPane = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, getIzquierdo(), getCentral());
 	        splitPane.setBorder(new RoundedBorder(5));
@@ -176,7 +165,7 @@ public class Bookcase extends JDialog {
 	}
 
 /*
-	
+
 	private JSplitPane getSplitPane() {
 	    if (splitPane == null) {
 	        JPanel centralPanel = getCentral();
@@ -221,7 +210,7 @@ public class Bookcase extends JDialog {
 	}
 
 */
-    
+
     private JPanel getCentral() {
 		if (panelCentral == null) {
 			panelCentral = new JPanel();
@@ -255,11 +244,11 @@ public class Bookcase extends JDialog {
 		}
 		return panelCentral;
 	}
-	
+
 	private JPanel getIzquierdo() {
 		if (panelIzquierdo == null) {
 			panelIzquierdo = new JPanel();
-			panelIzquierdo.setBackground(Color.GRAY);;
+			panelIzquierdo.setBackground(Color.GRAY);
 			panelIzquierdo.setBounds(0, 40, 935, 513);
 			panelIzquierdo.setLayout(null);
 			panelIzquierdo.add(getLblNewLabel());
@@ -276,7 +265,7 @@ public class Bookcase extends JDialog {
 			lblNewLabel.setOpaque(true);
 			lblNewLabel.setBackground(Color.BLACK);
 			lblNewLabel.setForeground(Color.WHITE);
-			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));;
 			lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 			lblNewLabel.setBounds(0, 0, 299, 50);
 		}

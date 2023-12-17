@@ -1,7 +1,10 @@
 package application;
 
 import java.awt.EventQueue;
+import java.awt.Frame;
+
 import javax.swing.JFrame;
+
 import visual.Login;
 
 public class Run {
@@ -12,7 +15,7 @@ public class Run {
 				try {
 					Login frame = new Login();
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-					frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 	
+					frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -20,6 +23,6 @@ public class Run {
 			}
 		});
 	}
-	
+
 
 }

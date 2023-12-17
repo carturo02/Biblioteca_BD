@@ -1,37 +1,35 @@
 package visual;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
+import java.awt.image.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import auxiliar.TransparentPanel;
-import auxiliar.RoundedBorder;
-import java.awt.BorderLayout;
-import javax.swing.BorderFactory;
-import java.awt.Dimension;
-import java.awt.Color;
-import javax.swing.JButton;
-import auxiliar.RoundJButton;
 import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.JTextField;
-import auxiliar.RoundJTextField;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import java.awt.SystemColor;
+import javax.swing.border.EmptyBorder;
+
+import com.lowagie.text.Image;
+
+import auxiliar.RoundJButton;
+import auxiliar.RoundJTextField;
+import auxiliar.RoundedBorder;
+import auxiliar.TransparentPanel;
 
 
 public class Principal extends JFrame {
 
 	 public static void main(String[] args) {
 		    load_screen();
-		    
-		    	
+
+
 		    }
 
 			private static void load_screen() {
@@ -41,7 +39,7 @@ public class Principal extends JFrame {
 								Principal frame = new Principal();
 								frame.setVisible(true);
 								frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-								frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 	
+								frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
@@ -50,7 +48,7 @@ public class Principal extends JFrame {
 			}
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -95,7 +93,7 @@ public class Principal extends JFrame {
 	 public Principal() {
 		    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		    setBounds(100, 100, 1400, 768);
-		    ImageIcon icon = new ImageIcon("D:\\Informatica\\Proyectos IDE Eclipse 2023\\BD_Biblioteca\\src\\auxiliar\\book1.png");
+		    final ImageIcon icon = new ImageIcon("D:\\Informatica\\Proyectos IDE Eclipse 2023\\BD_Biblioteca\\src\\auxiliar\\book1.png");
 		    JPanel contentPane = new JPanel() {
 		        @Override
 		        protected void paintComponent(Graphics g) {
@@ -149,7 +147,7 @@ public class Principal extends JFrame {
 			panel_2.setOpaque(false);
 			panel_2.setBackground(new Color(105, 105, 105));
 			panel_2.setBounds(150, 128, 1068, 230);
-			
+
 			panel_2.setLayout(null);
 			panel_2.add(getPanel_2_1_2_1_1());
 			panel_2.add(getLblNewLabel_4());
@@ -258,7 +256,7 @@ public class Principal extends JFrame {
 	                actualizarImagen("D:\\Informatica\\Proyectos IDE Eclipse 2023\\BD_Biblioteca\\src\\auxiliar\\autor.png", btnNewButton_1_1_1);
 	            }
 	        });
-			
+
 			btnNewButton_1_1_1.setBounds(409, 100, 118, 90);
 		}
 		return btnNewButton_1_1_1;
@@ -311,11 +309,12 @@ public class Principal extends JFrame {
 		}
 		return btnNewButton_3_1_1_1_1_2;
 	}
-	
+
 	private void actualizarImagen(String dir, RoundJButton et) {
         ImageIcon imagenOriginal = new ImageIcon(dir);
-        Image imagenEscalada = imagenOriginal.getImage().getScaledInstance(et.getWidth()-5, et.getHeight()-5, Image.SCALE_DEFAULT); ///
+        java.awt.Image imagenEscalada = imagenOriginal.getImage().getScaledInstance(et.getWidth()-5,et.getHeight()-5, java.awt.Image.SCALE_DEFAULT);
         ImageIcon imagenFinal = new ImageIcon(imagenEscalada);
+        		//new ImageIcon(imagenEscalada);
         et.setIcon(imagenFinal);
     }
 	private JLabel getLblNewLabel_3() {
