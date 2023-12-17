@@ -4,7 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+<<<<<<< HEAD
 import java.awt.Graphics;
+=======
+import java.awt.Frame;
+import java.awt.Graphics;
+import java.awt.Image;
+>>>>>>> e03c49e1dfbcbb3b3729fde2ea02018bc629f84e
 import java.awt.Insets;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
@@ -13,6 +19,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.net.URL;
+<<<<<<< HEAD
 import java.awt.image.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -29,6 +36,23 @@ import auxiliar.RoundJPasswordField;
 import auxiliar.RoundJTextField;
 import auxiliar.RoundedBorder;
 import auxiliar.TransparentPanel;
+=======
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JRadioButton;
+import javax.swing.SwingConstants;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
+import services.AccountServices;
+import visual.auxiliar.RoundJButton;
+import visual.auxiliar.RoundJPasswordField;
+import visual.auxiliar.RoundJTextField;
+import visual.auxiliar.RoundedBorder;
+import visual.auxiliar.TransparentPanel;
+>>>>>>> e03c49e1dfbcbb3b3729fde2ea02018bc629f84e
 
     public class Login extends JFrame {
         private static final long serialVersionUID = 1L;
@@ -49,7 +73,7 @@ import auxiliar.TransparentPanel;
 
         public Login() {
         	setTitle("LOGIN");
-            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
             setBounds(100, 100, 1300, 730);
             icon = new ImageIcon(Login.class.getResource("/img/book2.png"));
             contentPane = new JPanel(){
@@ -69,6 +93,10 @@ import auxiliar.TransparentPanel;
             contentPane.add(getPanel_1(), BorderLayout.CENTER);
 
         }
+
+        public Login returnThis(){
+    		return this;
+    	}
 
         private JPanel getPanel_1() {
             if (panel_1 == null) {
@@ -148,6 +176,26 @@ import auxiliar.TransparentPanel;
     	private RoundJButton getBtnNewButton() {
     		if (btnNewButton == null) {
     			btnNewButton = new RoundJButton("LOGIN");
+    			btnNewButton.addActionListener(new java.awt.event.ActionListener() {
+    				@Override
+					public void actionPerformed(java.awt.event.ActionEvent e) {
+    					AccountServices account = new AccountServices();
+
+    					if(account.getLoginUser(textField.getText(), passwordField.getPassword())) {
+    						Principal p = new Principal();
+    						p.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+    						p.setExtendedState(Frame.MAXIMIZED_BOTH);
+    						dispose();
+    						p.setVisible(true);
+
+    					}else
+    						JOptionPane.showMessageDialog(null, "Invalid username or wrong password");
+    					passwordField.setText("");
+
+
+
+    				}
+    			});
     			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 14));
     			btnNewButton.setBorder(new RoundedBorder(10));
     			btnNewButton.setBounds(95, 300, 160, 35);
@@ -219,7 +267,8 @@ import auxiliar.TransparentPanel;
     		if (rdbtnNewRadioButton == null) {
     			rdbtnNewRadioButton = new JRadioButton("view password");
     			rdbtnNewRadioButton.addItemListener(new ItemListener() {
-    			    public void itemStateChanged(ItemEvent e) {
+    			    @Override
+					public void itemStateChanged(ItemEvent e) {
     			        if (e.getStateChange() == ItemEvent.SELECTED) {
     			            passwordField.setEchoChar((char) 0);
     			        } else {

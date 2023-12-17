@@ -1,4 +1,4 @@
-package auxiliar;
+package visual.auxiliar;
 
 import java.awt.Color;
 import java.awt.Graphics;

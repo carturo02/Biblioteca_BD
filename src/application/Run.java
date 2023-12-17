@@ -2,9 +2,8 @@ package application;
 
 import java.awt.EventQueue;
 import java.awt.Frame;
-
 import javax.swing.JFrame;
-
+import javax.swing.WindowConstants;
 import visual.Login;
 
 public class Run {
@@ -14,7 +13,11 @@ public class Run {
 			public void run() {
 				try {
 					Login frame = new Login();
+
 					frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+					frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
 					frame.setExtendedState(Frame.MAXIMIZED_BOTH);
 					frame.setVisible(true);
 				} catch (Exception e) {

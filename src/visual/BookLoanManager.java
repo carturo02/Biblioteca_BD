@@ -22,9 +22,15 @@ import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 import javax.swing.table.DefaultTableModel;
 
+<<<<<<< HEAD
 import auxiliar.RoundJButton;
 import auxiliar.RoundJTextField;
 import auxiliar.RoundedBorder;
+=======
+import visual.auxiliar.RoundJButton;
+import visual.auxiliar.RoundJTextField;
+import visual.auxiliar.RoundedBorder;
+>>>>>>> e03c49e1dfbcbb3b3729fde2ea02018bc629f84e
 
 
 public class BookLoanManager extends JDialog {
@@ -54,6 +60,7 @@ public class BookLoanManager extends JDialog {
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
+			@Override
 			public void run() {
 				try {
 					BookLoanManager dialog = new BookLoanManager();
